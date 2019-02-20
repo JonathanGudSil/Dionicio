@@ -22,6 +22,10 @@ import { AsistenciaComponent } from './asistencia/asistencia.component';
 import {Component} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { AgregarCarreraComponent } from './agregar-carrera/agregar-carrera.component';
+import {OnInit, ViewChild} from '@angular/core';
+import {MatSort} from '@angular/material';
 
 
 
@@ -37,7 +41,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     DocenteComponent,
     GrupoComponent,
     ModuloComponent,
-    AsistenciaComponent
+    AsistenciaComponent,
+    AgregarCarreraComponent
   ],
   imports: [
     BrowserModule,
