@@ -14,13 +14,23 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  font-size: 30px;
 }
 .example-icon {
   color: blue;
   padding: 0 10px;
 }
 
+.spanclass{
+  flex: 1 1 auto;
+}
 .color {
   color: yellow;
   padding: 0 10px;
+}
+
+.iconclass{
+  color: white;
+  font-size: 30px;
+  padding: 0 14px;
 }

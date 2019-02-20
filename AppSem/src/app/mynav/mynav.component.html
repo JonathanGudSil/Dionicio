@@ -5,9 +5,17 @@
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink= "/"></a>
-      <a mat-list-item routerLink= "/">Inicio</a>
-      <a mat-list-item routerLink= "/">contacto</a>
+        <br> <br> 	
+        <hr /><br> 
+      <a mat-list-item routerLink= "/asistencia">Asistencia</a>
+      <a mat-list-item routerLink= "/carrera">Carrera</a>
+      <a mat-list-item routerLink= "/contrato">Contrato</a>
+      <a mat-list-item routerLink= "/docente">Docente</a>
+      <a mat-list-item routerLink= "/grupo">Grupo</a>
+      <br> <br>	
+      <hr /> <br> 
+      <a mat-list-item routerLink= "/inicio">Acerca de</a>
+      <a mat-list-item routerLink= "/contacto">Contacto</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -20,7 +28,9 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>AppSem</span>
+      <span class="spanclass"></span>
+      <a mat-list-item routerLink="/login"><mat-icon class="iconclass" matTooltip="Iniciar Sesión">account_circle</mat-icon>
+      </a>
     </mat-toolbar>
     <!-- Add Content Here -->
     <ng-content></ng-content> 
