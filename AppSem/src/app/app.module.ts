@@ -26,6 +26,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AgregarCarreraComponent } from './agregar-carrera/agregar-carrera.component';
 import {OnInit, ViewChild} from '@angular/core';
 import {MatSort} from '@angular/material';
+import {HttpClient} from '@angular/common/http';
+import {MatPaginator} from '@angular/material';
+import {merge, Observable, of as observableOf} from 'rxjs';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 
 
 
@@ -58,8 +62,22 @@ import {MatSort} from '@angular/material';
     MatCardModule,
     MatInputModule,
     MatTableModule,
+    Component,
+    MatTableDataSource,
+    MatGridListModule,
+    MatPaginatorModule,
+    ViewChild,
+    MatSort,
+    HttpClient,
+    MatPaginator,
+    
+
+
+
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
