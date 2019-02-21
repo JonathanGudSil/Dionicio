@@ -7,107 +7,75 @@ import {merge, Observable, of as observableOf, from} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 
 
-import { Time } from '@angular/common';
-
 @Component({
-  selector: 'table-http-example',
-  styleUrls: ['table-http-example.css'],
-  templateUrl: 'table-http-example.html',
+  selector: 'app-grupo',
+  templateUrl: './grupo.component.html',
+  styleUrls: ['./grupo.component.css']
 })
 export class GrupoComponent implements OnInit {
+  displayedColumns: string[] = ['IdGrupo', 'Carrera', 'Turno','FechaInicio', 'FechaFinal','MatriculaInicial','HoraInicio', 'HoraFinal','Accion'];
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   applyFilter(filterValue: string) {
-    
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
   constructor() { }
 
   ngOnInit() {
-   
+    this.dataSource.paginator = this.paginator;
   }
 
 }
 
 export interface PeriodicElement {
-  IDGrupo: number;
+  IdGrupo: number;
   Carrera: string;
   Turno: string;
   FechaInicio: string;
   FechaFinal: string;
   MatriculaInicial: string;
-  Horainicio: Time;
-  HoraFinalizacion: Time;
+  HoraInicio: string;
+  HoraFinal: string;
   Accion: string;
+  
+
 }
-  export class TableHttpExample implements AfterViewInit {
-    displayedColumns: string[] = ['created', 'state', 'number', 'title'];
-    exampleDatabase: ExampleHttpDatabase | null;
-    data: GithubIssue[] = [];
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {IdGrupo: 1, 
+    Carrera: 'Computacion', 
+    Turno: 'Sabatino', 
+    FechaInicio: '07/02/2019', 
+    FechaFinal: '29/03/2019', 
+    MatriculaInicial: '25', 
+    HoraInicio: '6:00 pm', 
+    HoraFinal: '9:00 pm', 
+    Accion: ' ' },
   
-    resultsLength = 0;
-    isLoadingResults = true;
-    isRateLimitReached = false;
-  
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
-  
-    constructor(private http: HttpClient) {}
-  
-    ngAfterViewInit() {
-      this.exampleDatabase = new ExampleHttpDatabase(this.http);
-  
-      // If the user changes the sort order, reset back to the first page.
-      this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-  
-      merge(this.sort.sortChange, this.paginator.page)
-        .pipe(
-          startWith({}),
-          switchMap(() => {
-            this.isLoadingResults = true;
-            return this.exampleDatabase!.getRepoIssues(
-              this.sort.active, this.sort.direction, this.paginator.pageIndex);
-          }),
-          map(data => {
-            // Flip flag to show that loading has finished.
-            this.isLoadingResults = false;
-            this.isRateLimitReached = false;
-            this.resultsLength = data.total_count;
-  
-            return data.items;
-          }),
-          catchError(() => {
-            this.isLoadingResults = false;
-            // Catch if the GitHub API has reached its rate limit. Return empty data.
-            this.isRateLimitReached = true;
-            return observableOf([]);
-          })
-        ).subscribe(data => this.data = data);
-    }
-  }
-  
-  export interface GithubApi {
-    items: GithubIssue[];
-    total_count: number;
-  }
-  
-  export interface GithubIssue {
-    created_at: string;
-    number: string;
-    state: string;
-    title: string;
-  }
-  
-  /** An example database that the data source uses to retrieve data for the table. */
-  export class ExampleHttpDatabase {
-    constructor(private http: HttpClient) {}
-  
-    getRepoIssues(sort: string, order: string, page: number): Observable<GithubApi> {
-      const href = 'https://api.github.com/search/issues';
-      const requestUrl =
-          `${href}?q=repo:angular/material2&sort=${sort}&order=${order}&page=${page + 1}`;
-  
-      return this.http.get<GithubApi>(requestUrl);
-    }
-  }
+    {IdGrupo: 2, 
+      Carrera: 'Técnico esp. Programación', 
+      Turno: 'Nocturno', 
+      FechaInicio: '07/02/2019', 
+      FechaFinal: '29/03/2019', 
+      MatriculaInicial: '2', 
+      HoraInicio: '6:00 pm', 
+      HoraFinal: '9:00 pm', 
+      Accion: ' ' },
+];
+
+/**
+ * @title Basic use of `<table mat-table>`
+ */
+@Component({
+  selector: 'app-grupo',
+  templateUrl: './grupo.component.html',
+  styleUrls: ['./grupo.component.css']
+})
+export class TableBasicExample {
+  displayedColumns: string[] = ['IdGrupo', 'Carrera', 'Turno', 'FechaInicio', 'FechaFinal', 'MatriculaInicial','Horainicio','HoraFinal', 'Accion'];
+  dataSource = ELEMENT_DATA;
+}
+
 
 
